@@ -165,9 +165,9 @@ export default function App() {
       {/* Main Workspace */}
       <main className="flex-1 max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-8">
         {/* Top Split Layout: Generation Config & Result Output */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 sm:gap-8 items-start">
           {/* Generation Configuration Form */}
-          <div className={generatedAccount ? 'lg:col-span-6' : 'lg:col-span-12'}>
+          <div className={generatedAccount ? 'lg:col-span-6 min-w-0 w-full' : 'lg:col-span-12 max-w-3xl mx-auto w-full'}>
             <AccountForm
               formData={formData}
               setFormData={setFormData}
@@ -179,7 +179,7 @@ export default function App() {
 
           {/* Generated Result Card */}
           {generatedAccount && (
-            <div className="lg:col-span-6">
+            <div className="lg:col-span-6 min-w-0 w-full">
               <GeneratedResultCard
                 accountData={generatedAccount}
                 onSave={handleSaveRecord}

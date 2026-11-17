@@ -36,19 +36,19 @@ export default function GeneratedResultCard({
   const isFormat1 = accountData.formatType === 'format1';
 
   return (
-    <div className="bg-white rounded-2xl p-6 sm:p-7 border border-indigo-200/80 shadow-md shadow-indigo-100/50 space-y-6 animate-in fade-in zoom-in-95 duration-200">
+    <div className="bg-white rounded-2xl p-5 sm:p-7 border border-indigo-200/80 shadow-md shadow-indigo-100/50 space-y-5 animate-in fade-in duration-200">
       {/* Header of Generated Result */}
       <div className="flex flex-col sm:flex-row sm:items-center justify-between pb-4 border-b border-slate-100 gap-3">
-        <div className="flex items-center gap-2.5">
-          <div className="w-9 h-9 rounded-xl bg-emerald-50 text-emerald-600 flex items-center justify-center border border-emerald-200">
+        <div className="flex items-start gap-2.5 min-w-0">
+          <div className="w-9 h-9 rounded-xl bg-emerald-50 text-emerald-600 flex items-center justify-center border border-emerald-200 flex-shrink-0 mt-0.5">
             <CheckCircle className="w-5 h-5" />
           </div>
-          <div>
-            <h2 className="text-lg font-bold text-slate-900">
+          <div className="min-w-0">
+            <h2 className="text-base sm:text-lg font-bold text-slate-900 leading-tight">
               Account Generated Successfully
             </h2>
-            <div className="flex items-center gap-2 mt-0.5">
-              <span className="text-xs text-slate-500 font-medium">Selected Format:</span>
+            <div className="flex items-center gap-1.5 mt-1 flex-wrap">
+              <span className="text-xs text-slate-500 font-medium">Format:</span>
               <span
                 className={`inline-flex px-2 py-0.5 rounded text-[11px] font-bold ${
                   isFormat1
@@ -63,14 +63,14 @@ export default function GeneratedResultCard({
         </div>
 
         {/* Quick Actions */}
-        <div className="flex items-center gap-2">
+        <div className="flex items-center gap-2 flex-shrink-0 self-end sm:self-auto">
           <button
             type="button"
             onClick={onReset}
             className="inline-flex items-center gap-1.5 px-3 py-2 text-xs font-semibold text-slate-600 bg-slate-100 hover:bg-slate-200 rounded-xl transition"
           >
             <RotateCcw className="w-3.5 h-3.5" />
-            Generate Another
+            New
           </button>
           <button
             type="button"
@@ -85,7 +85,7 @@ export default function GeneratedResultCard({
             {isSaved ? (
               <>
                 <Check className="w-3.5 h-3.5" />
-                Saved to Database
+                Saved
               </>
             ) : (
               <>
@@ -97,84 +97,92 @@ export default function GeneratedResultCard({
         </div>
       </div>
 
-      {/* Primary Metrics Grid */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3.5">
+      {/* Primary Metrics Grid - 2x2 Grid with ample breathing room */}
+      <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
         {/* Account Number */}
-        <div className="p-4 rounded-xl bg-slate-50 border border-slate-200">
+        <div className="p-3.5 rounded-xl bg-slate-50 border border-slate-200 min-w-0">
           <div className="flex items-center justify-between text-slate-400 mb-1">
-            <span className="text-[11px] font-bold uppercase tracking-wider text-slate-500">
+            <span className="text-[10px] sm:text-[11px] font-bold uppercase tracking-wider text-slate-500 truncate">
               Account Number
             </span>
-            <Hash className="w-4 h-4 text-indigo-500" />
+            <Hash className="w-4 h-4 text-indigo-500 flex-shrink-0" />
           </div>
-          <div className="text-xl font-extrabold font-mono text-indigo-600 tracking-wide">
+          <div className="text-lg sm:text-xl font-extrabold font-mono text-indigo-600 tracking-wide truncate">
             {accountData.accountNumber}
           </div>
-          <span className="text-[10px] text-emerald-600 font-medium">Unique • Starts with 8190</span>
+          <span className="text-[10px] text-emerald-600 font-medium block truncate mt-0.5">
+            Unique • Starts with 8190
+          </span>
         </div>
 
         {/* PIN */}
-        <div className="p-4 rounded-xl bg-slate-50 border border-slate-200">
+        <div className="p-3.5 rounded-xl bg-slate-50 border border-slate-200 min-w-0">
           <div className="flex items-center justify-between text-slate-400 mb-1">
-            <span className="text-[11px] font-bold uppercase tracking-wider text-slate-500">
+            <span className="text-[10px] sm:text-[11px] font-bold uppercase tracking-wider text-slate-500 truncate">
               4-Digit PIN
             </span>
-            <KeyRound className="w-4 h-4 text-indigo-500" />
+            <KeyRound className="w-4 h-4 text-indigo-500 flex-shrink-0" />
           </div>
-          <div className="text-xl font-extrabold font-mono text-slate-900 tracking-wider">
+          <div className="text-lg sm:text-xl font-extrabold font-mono text-slate-900 tracking-wider">
             {accountData.pin}
           </div>
-          <span className="text-[10px] text-slate-400">Preserved leading zeros</span>
+          <span className="text-[10px] text-slate-400 block truncate mt-0.5">
+            Preserved leading zeros
+          </span>
         </div>
 
         {/* Account Holder Name */}
-        <div className="p-4 rounded-xl bg-slate-50 border border-slate-200">
+        <div className="p-3.5 rounded-xl bg-slate-50 border border-slate-200 min-w-0">
           <div className="flex items-center justify-between text-slate-400 mb-1">
-            <span className="text-[11px] font-bold uppercase tracking-wider text-slate-500">
+            <span className="text-[10px] sm:text-[11px] font-bold uppercase tracking-wider text-slate-500 truncate">
               Account Holder
             </span>
-            <UserCheck className="w-4 h-4 text-indigo-500" />
+            <UserCheck className="w-4 h-4 text-indigo-500 flex-shrink-0" />
           </div>
           <div className="text-base font-bold text-slate-900 truncate">
             {accountData.accountHolderName}
           </div>
-          <span className="text-[10px] text-slate-400">Registered entity</span>
+          <span className="text-[10px] text-slate-400 block truncate mt-0.5">
+            Registered entity
+          </span>
         </div>
 
         {/* Main Amount */}
-        <div className="p-4 rounded-xl bg-slate-50 border border-slate-200">
+        <div className="p-3.5 rounded-xl bg-slate-50 border border-slate-200 min-w-0">
           <div className="flex items-center justify-between text-slate-400 mb-1">
-            <span className="text-[11px] font-bold uppercase tracking-wider text-slate-500">
+            <span className="text-[10px] sm:text-[11px] font-bold uppercase tracking-wider text-slate-500 truncate">
               Numeric Amount
             </span>
-            <DollarSign className="w-4 h-4 text-emerald-500" />
+            <DollarSign className="w-4 h-4 text-emerald-500 flex-shrink-0" />
           </div>
-          <div className="text-base font-bold text-slate-900">
+          <div className="text-base font-bold text-slate-900 truncate">
             ${Number(accountData.mainAmount).toLocaleString()}
           </div>
-          <span className="text-[10px] text-slate-400">
-            {accountData.additionalAmount ? `+ $${Number(accountData.additionalAmount).toLocaleString()}` : 'Base amount'}
+          <span className="text-[10px] text-slate-400 block truncate mt-0.5">
+            {accountData.additionalAmount
+              ? `+ $${Number(accountData.additionalAmount).toLocaleString()}`
+              : 'Base amount'}
           </span>
         </div>
       </div>
 
       {/* Words & Message Breakdown */}
-      <div className="space-y-3 bg-slate-50/70 p-4 rounded-xl border border-slate-200">
+      <div className="space-y-3 bg-slate-50/70 p-3.5 sm:p-4 rounded-xl border border-slate-200 min-w-0">
         <div>
-          <span className="text-[11px] font-bold text-slate-500 uppercase tracking-wider block mb-1">
+          <span className="text-[10px] sm:text-[11px] font-bold text-slate-500 uppercase tracking-wider block mb-1">
             Field 4: Main Amount in Words
           </span>
-          <p className="text-xs font-semibold text-slate-800 bg-white p-2.5 rounded-lg border border-slate-200 break-words">
+          <p className="text-xs font-semibold text-slate-800 bg-white p-2.5 rounded-lg border border-slate-200 break-words leading-relaxed">
             {accountData.mainAmountWords}
           </p>
         </div>
 
         <div>
-          <span className="text-[11px] font-bold text-slate-500 uppercase tracking-wider block mb-1">
+          <span className="text-[10px] sm:text-[11px] font-bold text-slate-500 uppercase tracking-wider block mb-1">
             Field 5: {isFormat1 ? 'Fixed Claims Message' : 'Additional Amount in Words'}
           </span>
           <p
-            className={`text-xs p-2.5 rounded-lg border break-words font-medium ${
+            className={`text-xs p-2.5 rounded-lg border break-words font-medium leading-relaxed ${
               isFormat1
                 ? 'bg-blue-50 text-blue-900 border-blue-200'
                 : 'bg-emerald-50 text-emerald-900 border-emerald-200'
@@ -186,14 +194,14 @@ export default function GeneratedResultCard({
       </div>
 
       {/* Raw Comma-Separated Output Box */}
-      <div className="space-y-2">
+      <div className="space-y-2 min-w-0">
         <div className="flex items-center justify-between">
           <label className="text-xs font-bold uppercase tracking-wider text-slate-700 flex items-center gap-1.5">
             <FileText className="w-3.5 h-3.5 text-indigo-600" />
             Complete Comma-Separated Output
           </label>
-          <span className="text-[11px] text-slate-400 font-mono">
-            Exact 5 comma-delimited fields
+          <span className="text-[10px] text-slate-400 font-mono">
+            Exact 5 fields
           </span>
         </div>
 
@@ -202,7 +210,7 @@ export default function GeneratedResultCard({
             readOnly
             rows={3}
             value={accountData.completeOutput}
-            className="w-full p-3.5 pr-28 text-xs font-mono bg-slate-900 text-slate-100 rounded-xl border border-slate-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 resize-none selection:bg-indigo-500 selection:text-white"
+            className="w-full p-3.5 pr-28 text-xs font-mono bg-slate-900 text-slate-100 rounded-xl border border-slate-700 focus:outline-none focus:ring-1 focus:ring-indigo-500 resize-none selection:bg-indigo-500 selection:text-white break-all leading-relaxed"
           />
           <button
             type="button"
@@ -227,7 +235,7 @@ export default function GeneratedResultCard({
           </button>
         </div>
         <p className="text-[11px] text-slate-500">
-          The &quot;Copy Output&quot; button copies the pure comma-separated record without tags, labels, or formatting artifacts.
+          The &quot;Copy Output&quot; button copies the pure comma-separated record without tags or formatting artifacts.
         </p>
       </div>
     </div>
