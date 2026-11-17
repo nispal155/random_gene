@@ -1,6 +1,8 @@
 # 💳 Account Number Generator
 
-A modern, full-stack web application for generating unique 12-digit fictional account numbers, random 4-digit PINs, and formatted output records with MongoDB Atlas persistence and Vercel serverless deployment.
+A modern, full-stack web application for generating unique 12-digit fictional account numbers, random 4-digit PINs, and formatted output records with MongoDB Atlas persistence.
+
+Deployable anywhere: **Render** (Node.js Web Service) and **Vercel** (Vite + Serverless Functions).
 
 > ⚠️ **Fictional Data Notice**: All generated account numbers, PINs, and monetary details are simulated test data created strictly for development, QA testing, and software integration purposes. They do not represent real bank accounts, balances, or payment credentials.
 
@@ -29,15 +31,11 @@ A modern, full-stack web application for generating unique 12-digit fictional ac
      AccountNumber,PIN,AccountHolderName,MainAmountInWords,ClaimsMessage
      ```
      Fixed fifth field: `unknown so please get in contact with your claims agent for further details in regards to spending rights of your funds`
-     *Example*:
-     `819043535423,3493,Gary Frisch,seven million five hundred thousand dollars,unknown so please get in contact with your claims agent for further details in regards to spending rights of your funds`
 
    - **Format 2 – Additional Amount**:
      ```
      AccountNumber,PIN,AccountHolderName,MainAmountInWords,AdditionalAmountInWords
      ```
-     *Example*:
-     `819043535423,3493,Gary Frisch,seven million five hundred thousand dollars,thirty five thousand dollars`
 
 5. **One-Click Clean Copy**:
    - Copies the exact comma-separated output string to the clipboard without labels, prefix tags, or whitespace distortion.
@@ -57,21 +55,34 @@ A modern, full-stack web application for generating unique 12-digit fictional ac
 - **Frontend**: React 18, Vite, Tailwind CSS, Lucide React, Axios.
 - **Backend API**: Node.js (ES Modules), Express.js, Mongoose, Bcryptjs, Morgan.
 - **Database**: MongoDB Atlas (Database: `Generator`).
-- **Deployment Platform**: Vercel Ready (Serverless Functions via `/api` + Vite Static Frontend).
+- **Deployment Platforms**: Render, Vercel, Railway, Docker, Localhost.
 
 ---
 
-## 🚀 Deployment to Vercel
+## 🚀 Deployment Instructions
 
-The application is pre-configured with `vercel.json` and a root `/api` serverless handler:
-
-1. Import your GitHub repository into Vercel (`https://github.com/nispal155/random_gene.git`).
-2. In the Vercel Project Settings, add the Environment Variable:
-   - **Name**: `MONGODB_URI`
+### Option A: Deploy on Render (Recommended for full-stack Node)
+1. Go to [Render Dashboard](https://dashboard.render.com/) and click **New > Web Service**.
+2. Connect your repository: `https://github.com/nispal155/random_gene`.
+3. Configure the settings:
+   - **Environment**: `Node`
+   - **Branch**: `main`
+   - **Build Command**: `npm install && npm run build`
+   - **Start Command**: `npm start`
+4. Under **Environment Variables**, add:
+   - **Key**: `MONGODB_URI`
    - **Value**: `mongodb+srv://nispalbhattarai28_db_user:ZonerBen%40%2412@cluster0.bhwlq4g.mongodb.net/Generator?retryWrites=true&w=majority`
-3. Click **Deploy**. Vercel will automatically build the frontend into `frontend/dist` and deploy the `/api` routes as serverless functions.
+5. Click **Deploy Web Service**. Render will build the Vite frontend into `dist/` and start Express serving both API and UI.
 
-> ℹ️ **MongoDB Atlas Network Access**: Ensure your MongoDB Atlas cluster has `0.0.0.0/0` (Allow Access from Anywhere) enabled under **Network Access** so Vercel's serverless IP ranges can connect to the database.
+---
+
+### Option B: Deploy on Vercel
+1. Import repository `https://github.com/nispal155/random_gene` on Vercel.
+2. In Project Settings > Environment Variables, add:
+   - `MONGODB_URI` = `mongodb+srv://nispalbhattarai28_db_user:ZonerBen%40%2412@cluster0.bhwlq4g.mongodb.net/Generator?retryWrites=true&w=majority`
+3. Click **Deploy**.
+
+> ℹ️ **MongoDB Atlas Network Access**: Ensure your MongoDB Atlas cluster has `0.0.0.0/0` (Allow Access from Anywhere) enabled under **Network Access** on [cloud.mongodb.com](https://cloud.mongodb.com).
 
 ---
 
@@ -89,16 +100,9 @@ PORT=5001
 MONGODB_URI=mongodb+srv://nispalbhattarai28_db_user:ZonerBen%40%2412@cluster0.bhwlq4g.mongodb.net/Generator?retryWrites=true&w=majority
 ```
 
-### 2. Start Local Servers
-In one terminal (Backend):
+### 2. Run Local Development Server
 ```bash
-cd backend
-npm run dev
-```
-
-In another terminal (Frontend):
-```bash
-cd frontend
+npm install
 npm run dev
 ```
 Open [http://localhost:3000](http://localhost:3000) in your browser.
@@ -109,6 +113,5 @@ Open [http://localhost:3000](http://localhost:3000) in your browser.
 
 Run the test suite:
 ```bash
-# Unit & integration tests
 npm test
 ```
